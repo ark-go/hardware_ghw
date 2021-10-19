@@ -1,18 +1,25 @@
 package main
 
-import()
+import (
+	"fmt"
+	"github.com/jaypipes/ghw"
+)
 
-func init(){
+func init() {
 }
 
-func main(){
-}
-package main
+func main() {
+	block, err := ghw.Block()
+	if err != nil {
+		fmt.Printf("Ошибка при получении информации о блочном хранилище : %v", err)
+	}
 
-import()
+	fmt.Printf("%v\n", block)
 
-func init(){
-}
-
-func main(){
+	for _, disk := range block.Disks {
+		fmt.Printf(" %v\n", disk.SerialNumber)
+		if disk.SerialNumber != "" {
+			break
+		}
+	}
 }
